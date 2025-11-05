@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  image-converter:
+    build: .
+    container_name: beaver-moon-image-converter
+    volumes:
+      - ./input-images:/app/input-images
+      - ./output:/app/output
+      - ./processed_files.json:/app/processed_files.json
+    restart: unless-stopped
+
