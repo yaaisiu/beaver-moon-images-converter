@@ -18,6 +18,18 @@ output/*
 # Generated files
 processed_files.json
 
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.coverage.*
+coverage.xml
+.tox/
+
+# Ruff
+.ruff_cache/
+
 # IDE
 .vscode/
 .idea/

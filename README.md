@@ -20,10 +20,34 @@ A Python script that converts images from the `input-images/` directory to JPG f
 
 ## Installation
 
+### Standard Installation
+
 1. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
+### Development Installation
+
+For development with testing and linting:
+```bash
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+```
+
+### Docker Installation
+
+1. Build the Docker image:
+```bash
+docker-compose build
+```
+
+2. Run the conversion:
+```bash
+docker-compose up
+```
+
+The Docker setup automatically mounts `input-images/` and `output/` directories.
 
 ## Usage
 
@@ -64,6 +88,13 @@ python convert_images.py
 
 - `convert_images.py` - Main conversion script
 - `requirements.txt` - Python dependencies
+- `requirements-dev.txt` - Development dependencies (pytest, ruff)
+- `tests/` - Test suite with unit and integration tests
+- `Dockerfile` - Docker container configuration
+- `docker-compose.yaml` - Docker Compose service definition
+- `pyproject.toml` - Ruff configuration and project metadata
+- `pytest.ini` - Pytest configuration
+- `.github/workflows/ci.yml` - GitHub Actions CI/CD pipeline
 - `input-images/` - Source images organized by author (folder name = author name)
 - `output/` - Converted JPG files with unique names
 - `processed_files.json` - Tracking file for processed images (auto-generated)
@@ -75,6 +106,49 @@ The script tracks processed files by their SHA256 hash. This means:
 - Already processed images will be skipped
 - Only new or changed images will be converted
 
+## Development
+
+### Running Tests
+
+Run the test suite with coverage:
+```bash
+pytest
+```
+
+Run tests with verbose output:
+```bash
+pytest -v
+```
+
+### Code Quality
+
+Lint code with Ruff:
+```bash
+ruff check .
+```
+
+Format code with Ruff:
+```bash
+ruff format .
+```
+
+Check formatting without modifying files:
+```bash
+ruff format --check .
+```
+
+### CI/CD
+
+The project includes a GitHub Actions workflow (`.github/workflows/ci.yml`) that automatically:
+- Runs Ruff linting and formatting checks
+- Executes the test suite with coverage reporting
+- Builds the Docker image to verify it works
+
+The CI pipeline runs on:
+- Push to `main` or `master` branch
+- Pull requests
+- Manual workflow dispatch
+
 ## Notes
 
 - Original images are not modified or deleted
@@ -82,4 +156,12 @@ The script tracks processed files by their SHA256 hash. This means:
 - EXIF metadata includes author name in Artist, ImageDescription, and Copyright fields
 - Transparent images (PNG with alpha channel) are converted with white background
 
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests: `pytest`
+5. Run linting: `ruff check .` and `ruff format --check .`
+6. Submit a pull request
 
