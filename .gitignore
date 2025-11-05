@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Image files - ignore contents but keep folder structure
+input-images/*/*
+!input-images/*/.gitkeep
+output/*
+!output/.gitkeep
+
+# Generated files
+processed_files.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+
